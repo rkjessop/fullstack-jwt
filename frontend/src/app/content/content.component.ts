@@ -9,13 +9,17 @@ import { AxiosService } from '../axios.service';
 export class ContentComponent {
 	componentToShow: string = "welcome";
 
-	constructor(private axiosService: AxiosService) { }
+	constructor(private axiosService: AxiosService) { 
+		console.error('ContentComponent ##### >constructor:axiosService = ', axiosService);
+	}
 
 	showComponent(componentToShow: string): void {
+		console.error('##### >showComponent:componentToShow = ', componentToShow);
     this.componentToShow = componentToShow;
   }
 
 	onLogin(input: any): void {
+		console.error('##### >onLogin:input = ', input);
 		this.axiosService.request(
 		    "POST",
 		    "/login",
@@ -28,14 +32,16 @@ export class ContentComponent {
 		        this.componentToShow = "messages";
 		    }).catch(
 		    error => {
-		        this.axiosService.setAuthToken(null);
-		        this.componentToShow = "welcome";
+					console.error('#######################');
+					this.axiosService.setAuthToken(null);
+					this.componentToShow = "welcome";
 		    }
 		);
 
 	}
 
 	onRegister(input: any): void {
+		console.error('##### >onRegister:input = ', input);
 		this.axiosService.request(
 		    "POST",
 		    "/register",

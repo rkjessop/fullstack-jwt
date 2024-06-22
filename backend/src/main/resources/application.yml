@@ -7,6 +7,6 @@ spring:
     username: backend
     password: backend
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgresSQLDialect
     hibernate:
       ddl-auto: create

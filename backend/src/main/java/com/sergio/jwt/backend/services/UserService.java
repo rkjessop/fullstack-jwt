@@ -8,6 +8,7 @@ import com.sergio.jwt.backend.exceptions.AppException;
 import com.sergio.jwt.backend.mappers.UserMapper;
 import com.sergio.jwt.backend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.nio.CharBuffer;
 import java.util.Optional;
 
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -26,6 +28,7 @@ public class UserService {
     private final UserMapper userMapper;
 
     public UserDto login(CredentialsDto credentialsDto) {
+        log.error("@@@ ################################### >login:credentialsDto = " + credentialsDto);
         User user = userRepository.findByLogin(credentialsDto.login())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
